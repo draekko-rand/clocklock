@@ -1,9 +1,8 @@
 ### ClockLock
 
-ClockLock is an home, and lock screen widget.
+ClockLock is an home, and lock screen widget for Android devices.
  
- 
- 
+
 ### Features
 
 * Two weather providers (OpenWeatherMap and Weather Underground). 
@@ -23,8 +22,7 @@ ClockLock is an home, and lock screen widget.
 * Lock screen widgets are only supported on Android 4.x and with 3rd party lock screen apps on Android 5+ 
 * App requires internet, location permissions to be active for the weather providers to function. 
 * App requires internet, calendar  permissions to be active for the calendar notification to function. 
- 
- 
+
  
 ### Miscellaneous
 
@@ -33,8 +31,7 @@ Get an OpenWeatherMap API key at https://openweathermap.org/appid
 Get a Weather Underground API key at https://www.wunderground.com/weather/api/ 
 
 Visit https://github.com/draekko-rand/clocklock for the source code. 
- 
- 
+
  
 ### License
 
