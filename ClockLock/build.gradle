@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.draekko.clocklock"
+        minSdkVersion 23
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+
+        resValue "string", "tray__authority", "${applicationId}.tray"
+    }
+
+    lintOptions {
+        // checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError true
+        disable 'MissingTranslation'
+    }
+
+    compileOptions {
+        //targetCompatibility 1.8
+        //sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'net.grandcentrix.tray:tray:0.11.0'
+
+    compile project(':TrayPreferences')
+
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.google.android.gms:play-services-base:8.4.0'
+}

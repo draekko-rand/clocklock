@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/digital_appwidget"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|top"
+    android:orientation="vertical">
+
+    <include layout="@layout/clock_panel"
+        android:id="@+id/clock_panel_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top" />
+
+    <include layout="@layout/weather_panel_plus"
+        android:id="@+id/weather_panel_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@id/clock_panel_plus"
+        android:visibility="gone" />
+
+    <include layout="@layout/calendar_panel"
+        android:id="@+id/calendar_panel_plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@id/weather_panel_plus"
+        android:visibility="gone" />
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ClockLock.iml" filepath="$PROJECT_DIR$/ClockLock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ClockLock/ClockLock-ClockLock.iml" filepath="$PROJECT_DIR$/ClockLock/ClockLock-ClockLock.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TrayPreferences/TrayPreferences.iml" filepath="$PROJECT_DIR$/TrayPreferences/TrayPreferences.iml" />
+    </modules>
+  </component>
+</project>

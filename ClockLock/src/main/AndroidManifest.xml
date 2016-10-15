@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2012 The CyanogenMod Project (DvTonder)
+    Copyright (C) 2016 Benoit Touchette
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!--
+                            ___====-    -====___
+                       ____/@@@@@//      \\@@@@@\____
+                    _.^@@@@@@@@@// (    ) \\@@@@@@@@@^._
+                   .@@@@@@@@@@@//  |\^^/|  \\@@@@@@@@@@@-
+                 _/@@@@@@@@@@@//   (@::@)   \\@@@@@@@@@@@@\_
+                /@@@@@@@@@@@@((     \\//     ))@@@@@@@@@@@@@\
+              .@@@@@@@@@@@@@@@\\    (oo)    //@@@@@@@@@@@@@@@.
+             .@@@@@@@@@@@@@@@@@\\  / \/ \  //@@@@@@@@@@@@@@@@@.
+             |@@@@@@@@@@@@@@@@@@\\/      \//@@@@@@@@@@@@@@@@@@|
+             |@@@@@@@@@@@/\@@@@@@(        )@@@@@@/\@@@@@@@@@@@|
+             |@/\@/\@/\@/  \@/\@@(   /\   )@@/\@/  \@/\@/\@/\@|
+             |/  V  V  `    V  \_(| |  | |)_/  V    '  V  V  \|
+             `   `  `       `   / | |  | | \   '       '  '   '
+                               (  | |  | |  )
+                             <__\_| |  | |_/__>
+                             ^^^^ ^^^  ^^^ ^^^^^
+
+                               HERE BE DRAGONS
+-->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.draekko.clocklock"
+    android:versionCode="20161011"
+    android:versionName="2016.1">
+
+    <uses-sdk
+        android:minSdkVersion="23"
+        android:targetSdkVersion="23" />
+
+    <meta-data
+        android:name="com.google.android.gms.version"
+        android:value="@integer/google_play_services_version" />
+
+    <permission android:name="com.draekko.clocklock.permission.READ_WEATHER" />
+
+    <!-- Weather -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Calendar -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
+    <!-- General -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".WidgetApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Main">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
+        <activity
+            android:name=".preference.Preferences"
+            android:configChanges="orientation|screenSize"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- The weather forecast activity -->
+        <activity
+            android:name=".weather.ForecastActivity"
+            android:excludeFromRecents="true"
+            android:hardwareAccelerated="true"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@style/transparent" />
+
+        <activity
+            android:name=".weather.PermissionRequestActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name=".preference.About"
+            android:excludeFromRecents="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+            <intent-filter>
+                <action android:name="com.draekko.clocklock.preference.About" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".preference.RefreshWeather"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
+            <intent-filter>
+                <action android:name="com.draekko.clocklock.preference.RefreshWeather" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- The Widget receiver -->
+        <receiver android:name=".ClockWidgetProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clock_lock" />
+
+            <intent-filter>
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.android.deskclock.NEXT_ALARM_TIME_SET" />
+                <action android:name="com.draekko.clocklock.action.SHOW_FORECAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED" />
+
+                <data android:scheme="content" />
+                <data android:host="com.android.calendar" />
+            </intent-filter>
+        </receiver>
+
+        <!-- The Plus Widget receiver -->
+        <receiver android:name=".ClockWidgetPlusProvider">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/clock_lock_plus" />
+
+            <intent-filter>
+                <action android:name="android.app.action.NEXT_ALARM_CLOCK_CHANGED" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="com.android.deskclock.NEXT_ALARM_TIME_SET" />
+                <action android:name="com.draekko.clocklock.action.SHOW_FORECAST" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED" />
+
+                <data android:scheme="content" />
+                <data android:host="com.android.calendar" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".ClockWidgetService"
+            android:label="@string/app_name"
+            android:process=":cws"></service>
+        <service
+            android:name=".ClockWidgetPlusService"
+            android:label="@string/app_name"
+            android:process=":cwps"></service>
+        <service
+            android:name=".weather.WeatherUpdateService"
+            android:label="@string/app_name"
+            android:process=":weather"></service>
+        <service
+            android:name=".calendar.CalendarViewsService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_REMOTEVIEWS"
+            android:process=":calendar"></service>
+
+        <provider
+            android:name=".weather.WeatherContentProvider"
+            android:authorities="com.draekko.clocklock.weather.provider"
+            android:exported="true"
+            android:readPermission="com.draekko.clocklock.permission.READ_WEATHER" />
+
+    </application>
+
+</manifest>

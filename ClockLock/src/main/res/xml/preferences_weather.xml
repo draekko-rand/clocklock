@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright (C) 2015 The CyanogenMod Project (DvTonder)
+    Copyright (C) 2016 Benoit Touchette
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<com.draekko.traypreferences.TrayPreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    custom:key="weather_settings"
+    custom:title="@string/weather_category">
+
+    <com.draekko.traypreferences.TrayPreferenceCategory
+        custom:title="@string/general_category">
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="show_weather"
+            custom:title="@string/weather_enable"
+            custom:defaultValue="true" />
+
+        <com.draekko.traypreferences.TrayListPreference
+            custom:key="weather_source"
+            custom:defaultValue="openweathermap"
+            custom:dependency="show_weather"
+            custom:summary="%s"
+            custom:entries="@array/weather_source_entries"
+            custom:entryValues="@array/weather_source_values"
+            custom:title="@string/weather_source_title" />
+
+        <com.draekko.traypreferences.TrayEditTextPreference
+            custom:title="@string/weather_api_key"
+            custom:dependency="show_weather"
+            custom:summary="API Key used to access weather service"
+            custom:key="weather_api_key"/>
+
+        <com.draekko.traypreferences.TrayListPreference
+            custom:key="weather_refresh_interval"
+            custom:dependency="show_weather"
+            custom:defaultValue="60"
+            custom:summary="%s"
+            custom:entries="@array/weather_interval_entries"
+            custom:entryValues="@array/weather_interval_values"
+            custom:title="@string/weather_refresh_interval" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_use_custom_location"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_use_custom_location"
+            custom:defaultValue="false" />
+
+        <com.draekko.clocklock.preference.CustomLocationPreference
+            custom:key="weather_custom_location_city"
+            custom:dependency="weather_use_custom_location"
+            custom:dialogTitle="@string/weather_custom_location_dialog_title"
+            custom:hint="@string/weather_custom_location_hint"
+            custom:title="@string/weather_custom_location_title" />
+    </com.draekko.traypreferences.TrayPreferenceCategory>
+
+    <com.draekko.traypreferences.TrayPreferenceCategory custom:title="@string/display_category">
+
+        <com.draekko.clocklock.preference.IconSelectionPreference
+            custom:key="weather_icons"
+            custom:title="@string/weather_icon_set_title"
+            custom:dialogTitle="@string/weather_icon_set_title"
+            custom:defaultValue="color" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_show_when_minimized"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_show_when_minimized_title"
+            custom:summary="@string/weather_show_when_minimized_summary"
+            custom:defaultValue="true" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_use_metric"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_use_metric" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_show_location"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_show_location_title"
+            custom:defaultValue="true" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_show_timestamp"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_show_timestamp_title"
+            custom:defaultValue="true" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_invert_lowhigh"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_invert_lowhigh"
+            custom:defaultValue="false" />
+
+        <com.draekko.traypreferences.TraySwitchPreference
+            custom:key="weather_use_sensors"
+            custom:dependency="show_weather"
+            custom:title="@string/weather_use_sensors"
+            custom:defaultValue="false" />
+
+        <com.draekko.traypreferences.TrayListPreference
+            custom:key="weather_font_color"
+            custom:title="@string/font_color"
+            custom:dependency="show_weather"
+            custom:defaultValue="#ffffffff"
+            custom:entries="@array/font_color_entries"
+            custom:entryValues="@array/font_color_values" />
+
+        <com.draekko.traypreferences.TrayListPreference
+            custom:key="weather_timestamp_font_color"
+            custom:title="@string/font_color_timestamp"
+            custom:dependency="show_weather"
+            custom:defaultValue="#80ffffff"
+            custom:entries="@array/font_color_entries"
+            custom:entryValues="@array/font_color_values" />
+
+    </com.draekko.traypreferences.TrayPreferenceCategory>
+
+</com.draekko.traypreferences.TrayPreferenceScreen>
