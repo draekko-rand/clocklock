@@ -1,6 +1,6 @@
 ### ClockLock
 
-ClockLock is an home, and lock screen widget for Android devices.
+ClockLock is a homescreen widget providing time, weather, and calendar information.
  
 
 ### Features
@@ -22,6 +22,8 @@ ClockLock is an home, and lock screen widget for Android devices.
 * Lock screen widgets are only supported on Android 4.x and with 3rd party lock screen apps on Android 5+ 
 * App requires internet, location permissions to be active for the weather providers to function. 
 * App requires internet, calendar  permissions to be active for the calendar notification to function. 
+*  If the weather widget has issues with updating make sure to enable high accuracy location services.
+*  On some devices the weather widget will fail to update even with location services set to high accuracy, in those case remove the widget open up Google maps get your current location, close Google map, and then add the widget back to your homescreen.
 
  
 ### Miscellaneous
