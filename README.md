@@ -14,7 +14,7 @@ ClockLock is a homescreen widget providing time, weather, and calendar informati
 
 ### Note
 
-* Current version only supported on Android 6.0 and above.
+* The current version supports Android 5.0 and above.
 * Weather providers require a free API key to access their resources. 
 * This is an open source fork of LockClock (cLock app) from the Cyanogenmod project. 
 * Using the Xposed framework to bypass Android Widget API's will cause issues. 
