@@ -8,8 +8,8 @@ android {
         applicationId "com.draekko.clocklock"
         minSdkVersion 23
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2016101502
+        versionName "2016.2"
 
         resValue "string", "tray__authority", "${applicationId}.tray"
     }

@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 
@@ -122,6 +123,9 @@ public class CalendarPreferences extends TrayPreferenceFragment implements
     }
 
     private boolean hasCalendarPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
         return mContext.checkSelfPermission(Manifest.permission.READ_CALENDAR)
                 == PackageManager.PERMISSION_GRANTED;
     }
@@ -162,6 +166,9 @@ public class CalendarPreferences extends TrayPreferenceFragment implements
             if (hasCalendarPermission()) {
                 updateCalendars();
             } else {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                    return true;
+                }
                 Boolean enabled = (Boolean) newValue;
                 if (enabled) {
                     String[] permissions = new String[]{Manifest.permission.READ_CALENDAR};

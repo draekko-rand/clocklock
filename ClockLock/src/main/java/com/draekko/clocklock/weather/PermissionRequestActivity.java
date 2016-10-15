@@ -19,6 +19,7 @@ package com.draekko.clocklock.weather;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 
@@ -44,11 +45,16 @@ public class PermissionRequestActivity extends Activity {
             return;
         }
 
-        String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION};
-        requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+            String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION};
+            requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
+        }
     }
 
     public boolean hasLocationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
         return checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED;
     }

@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -204,6 +205,9 @@ public class WeatherPreferences extends TrayPreferenceFragment implements
     }
 
     public static boolean hasLocationPermission(Context context) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
         return context.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED;
     }
@@ -280,8 +284,11 @@ public class WeatherPreferences extends TrayPreferenceFragment implements
 
     @Override
     public boolean onPreferenceChange(TrayPreference preference, Object newValue) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
         if (preference == mShowWeather) {
-            if (!hasLocationPermission(mContext)) {
+            if (!hasLocationPermission(mContext) ) {
                 String[] permissions = new String[]{Manifest.permission.ACCESS_COARSE_LOCATION};
                 requestPermissions(permissions, LOCATION_PERMISSION_REQUEST_CODE);
                 return false;

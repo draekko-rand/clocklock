@@ -38,11 +38,11 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.draekko.clocklock"
-    android:versionCode="20161011"
-    android:versionName="2016.1">
+    android:versionCode="20161015"
+    android:versionName="2016.2">
 
     <uses-sdk
-        android:minSdkVersion="23"
+        android:minSdkVersion="21"
         android:targetSdkVersion="23" />
 
     <meta-data
