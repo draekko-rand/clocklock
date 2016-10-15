@@ -34,6 +34,8 @@ Get a Weather Underground API key at https://www.wunderground.com/weather/api/
 
 Visit https://github.com/draekko-rand/clocklock for the source code. 
 
+Now available on the Play store https://play.google.com/store/apps/details?id=com.draekko.clocklock
+
  
 ### License
 
