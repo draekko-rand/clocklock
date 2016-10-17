@@ -197,6 +197,11 @@ public class CustomLocationPreference extends TrayEditTextPreference {
 
         private void applyLocation(final LocationResult result) {
             Preferences.setCustomWeatherLocationId(getContext(), result.id);
+            Preferences.setCustomWeatherLocationCity(getContext(), result.city);
+            Preferences.setCustomWeatherLocationState(getContext(), result.state);
+            Preferences.setCustomWeatherLocationCountry(getContext(), result.country);
+            Preferences.setCustomWeatherLocationCountryName(getContext(), result.countryName);
+
             setText(result.city);
             mDialog.dismiss();
         }

@@ -86,7 +86,8 @@ public class RefreshWeather extends Activity {
                 locationResult.id = Preferences.customWeatherLocationId(staticActivity);
                 locationResult.city = Preferences.customWeatherLocationCity(staticActivity);
                 locationResult.state = Preferences.customWeatherLocationState(staticActivity);
-                locationResult.countryName = Preferences.customWeatherLocationCountry(staticActivity);
+                locationResult.country = Preferences.customWeatherLocationCountry(staticActivity);
+                locationResult.countryName = Preferences.customWeatherLocationCountryName(staticActivity);
                 customLocationId = locationResult.id;
                 if (weatherProvider != null && customLocationId != null && locationResult != null) {
                     weatherInfo = weatherProvider.getWeatherInfo(customLocationId, locationResult, metric);

@@ -244,6 +244,10 @@ public class Preferences {
         return getPrefs(context.getApplicationContext()).getString(Constants.WEATHER_CUSTOM_LOCATION_COUNTRY, null);
     }
 
+    public static String customWeatherLocationCountryName(Context context) {
+        return getPrefs(context.getApplicationContext()).getString(Constants.WEATHER_CUSTOM_LOCATION_COUNTRY_NAME, null);
+    }
+
     public static void setCustomWeatherLocationCity(Context context, String city) {
         getPrefs(context.getApplicationContext()).put(Constants.WEATHER_CUSTOM_LOCATION_CITY, city);
     }
@@ -254,6 +258,10 @@ public class Preferences {
 
     public static void setCustomWeatherLocationCountry(Context context, String country) {
         getPrefs(context.getApplicationContext()).put(Constants.WEATHER_CUSTOM_LOCATION_COUNTRY, country);
+    }
+
+    public static void setCustomWeatherLocationCountryName(Context context, String countryName) {
+        getPrefs(context.getApplicationContext()).put(Constants.WEATHER_CUSTOM_LOCATION_COUNTRY_NAME, countryName);
     }
 
     public static String weatherProviderString(Context context) {

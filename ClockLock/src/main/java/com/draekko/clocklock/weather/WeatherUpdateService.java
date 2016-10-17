@@ -207,18 +207,23 @@ public class WeatherUpdateService extends Service {
 
             WeatherProvider.LocationResult locationResult = null;
             boolean metric = Preferences.useMetricUnits(mContext);
-            String customLocationId = null, customLocationName = null, customLocationState = null, customLocationCountry = null;
 
             if (Preferences.useCustomWeatherLocation(mContext)) {
                 locationResult = new WeatherProvider.LocationResult();
                 locationResult.id = Preferences.customWeatherLocationId(mContext);
                 locationResult.city = Preferences.customWeatherLocationCity(mContext);
                 locationResult.state = Preferences.customWeatherLocationState(mContext);
-                locationResult.countryName = Preferences.customWeatherLocationCountry(mContext);
+                locationResult.country = Preferences.customWeatherLocationCountry(mContext);
+                locationResult.countryName = Preferences.customWeatherLocationCountryName(mContext);
+                if (locationResult.id == null || locationResult.city == null ||
+                        locationResult.state == null || locationResult.country == null ||
+                        locationResult.countryName == null) {
+                    locationResult = null;
+                }
             }
 
-            if (provider != null && customLocationId != null && locationResult != null) {
-                return provider.getWeatherInfo(customLocationId, locationResult, metric);
+            if (provider != null && locationResult != null) {
+                return provider.getWeatherInfo(null, locationResult, metric);
             }
 
             location = WidgetUtils.getCurrentLocation(mContext, lm, location);

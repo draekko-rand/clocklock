@@ -135,11 +135,38 @@ public class WeatherUndergroundProvider implements WeatherProvider {
     }
 
     public WeatherInfo getWeatherInfo(String id, LocationResult location, boolean metric) {
+        String location_city = null;
+        String location_state = null;
+        String location_country = null;
+        String location_country_name = null;
+        String selection = null;
+        if (location == null) {
+            return null;
+        }
+        if (location.city != null) {
+            location_city = location.city.trim();
+        } else {
+            return null;
+        }
+        if (location.state != null) {
+            location_state = location.state.trim();
+        }
+        if (location.country != null) {
+            location_country = location.country.trim();
+        }
+        if (location.countryName != null) {
+            location_country_name = location.countryName.trim();
+        }
+        if (location_country != null && location_country.toLowerCase().equals("us")) {
+            selection = location_state + "/" + location_city;
+        } else {
+            selection = location_country_name + "/" + location_city;
+        }
         return handleWeatherRequest(
-                location.city.trim(),
-                location.city.trim(),
-                location.state.trim(),
-                location.countryName.trim(),
+                selection,
+                location_city,
+                location_state,
+                location_country_name,
                 metric,
                 false);
     }
@@ -164,6 +191,13 @@ public class WeatherUndergroundProvider implements WeatherProvider {
         if (API_KEY == null || API_KEY.isEmpty()) {
             if (Debug.doDebug(mContext)) Log.v(TAG, "KEY = NULL\n");
             return null;
+        }
+
+        if (cityName != null && selection != null) {
+            if (cityName.toLowerCase().equals(selection.toLowerCase())) {
+                String temp = selection;
+                selection = countryName + "/" + temp;
+            }
         }
 
         String units = metric ? "metric" : "imperial";

@@ -100,8 +100,13 @@ public class OpenWeatherMapProvider implements WeatherProvider {
             return null;
         }
 
+        input = input.replaceAll("\\s","");
+        String[] splitstr = input.split(",");
         String URL_LOCATION = URL_LOCATION_PRE + API_KEY;
-        String url = String.format(URL_LOCATION, Uri.encode(input), getLanguageCode());
+        String url = String.format(URL_LOCATION, splitstr[0].trim(), getLanguageCode());
+
+        //String URL_LOCATION = URL_LOCATION_PRE + API_KEY;
+        //String url = String.format(URL_LOCATION, Uri.encode(input), getLanguageCode());
         String response = HttpRetriever.retrieve(url);
         if (response == null) {
             return null;
@@ -134,11 +139,32 @@ public class OpenWeatherMapProvider implements WeatherProvider {
 
     public WeatherInfo getWeatherInfo(String id, LocationResult location, boolean metric) {
         String selection = String.format(Locale.US, SELECTION_ID, id);
+        String location_city = null;
+        String location_state = null;
+        String location_country = null;
+        String location_country_name = null;
+        if (location == null || id == null) {
+            return null;
+        }
+        if (location.city != null) {
+            location_city = location.city.trim();
+        } else {
+            return null;
+        }
+        if (location.state != null) {
+            location_state = location.state.trim();
+        }
+        if (location.country != null) {
+            location_country = location.country.trim();
+        }
+        if (location.countryName != null) {
+            location_country_name = location.countryName.trim();
+        }
         return handleWeatherRequest(
                 selection,
-                location.city,
-                location.state,
-                location.countryName,
+                location_city,
+                location_state,
+                location_country_name,
                 metric);
     }
 

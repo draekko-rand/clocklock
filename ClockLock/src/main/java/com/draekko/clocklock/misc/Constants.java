@@ -43,6 +43,7 @@ public class Constants {
     public static final String WEATHER_CUSTOM_LOCATION_CITY = "weather_custom_location_city";
     public static final String WEATHER_CUSTOM_LOCATION_STATE = "weather_custom_location_state";
     public static final String WEATHER_CUSTOM_LOCATION_COUNTRY = "weather_custom_location_country";
+    public static final String WEATHER_CUSTOM_LOCATION_COUNTRY_NAME = "weather_custom_location_country_name";
     public static final String WEATHER_SHOW_LOCATION = "weather_show_location";
     public static final String WEATHER_SHOW_TIMESTAMP = "weather_show_timestamp";
     public static final String WEATHER_USE_METRIC = "weather_use_metric";
